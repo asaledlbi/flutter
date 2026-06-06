@@ -107,7 +107,7 @@ case PhosphorIconsStyle.${style.styleName}:
       ..defaultTo = Code('PhosphorIconsStyle.regular')
       ..type = Reference('PhosphorIconsStyle')))
     ..body = Code(code)
-    ..returns = Reference('PhosphorIconData'));
+    ..returns = Reference('PhosphorIconValue'));
 }
 
 /// reads the phosphor json  of one style and generates a dart class

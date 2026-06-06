@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class PhosphorIcon extends Icon {
-  const PhosphorIcon(
-    IconData icon, {
+  PhosphorIcon(
+    PhosphorIconValue phosphorIcon, {
     Key? key,
     double? size,
     double? fill,
@@ -18,8 +18,9 @@ class PhosphorIcon extends Icon {
     TextDirection? textDirection,
     this.duotoneSecondaryOpacity = 0.20,
     this.duotoneSecondaryColor,
-  }) : super(
-          icon,
+  })  : _phosphorIcon = phosphorIcon,
+        super(
+          phosphorIcon.icon,
           color: color,
           fill: fill,
           grade: grade,
@@ -32,20 +33,21 @@ class PhosphorIcon extends Icon {
           weight: weight,
         );
 
+  final PhosphorIconValue _phosphorIcon;
   final double duotoneSecondaryOpacity;
   final Color? duotoneSecondaryColor;
 
   @override
   Widget build(BuildContext context) {
-    if (icon is PhosphorDuotoneIconData) {
-      final duotoneIcon = icon as PhosphorDuotoneIconData;
+    if (_phosphorIcon is PhosphorDuotoneIconData) {
+      final duotoneIcon = _phosphorIcon as PhosphorDuotoneIconData;
       return Stack(
         alignment: Alignment.center,
         children: [
           Opacity(
             opacity: duotoneSecondaryOpacity,
             child: Icon(
-              duotoneIcon.secondary,
+              duotoneIcon.secondaryIcon,
               key: key,
               size: size,
               fill: fill,
